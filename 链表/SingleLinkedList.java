@@ -1,12 +1,12 @@
 /**
- * 链表类
+ * 单链表类
  */
-public class LinkedList {
+public class SingleLinkedList {
     Node head;
     int length = 0;
 
     // 构造函数
-    public LinkedList() {
+    public SingleLinkedList() {
         head = new Node();
     }
 
