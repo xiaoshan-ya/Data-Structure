@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class LinkedListTest {
+public class TestLinkedList {
     @Test
     public void testAddNode() {
         DoubleLinkedList list = new DoubleLinkedList();
