@@ -22,7 +22,7 @@ public class Stack {
     }
 
     public boolean isEmpty () {
-        return stack.length == 0;
+        return this.top == -1;
     }
 
     public int length () {
@@ -45,5 +45,9 @@ public class Stack {
             return null;
         }
         return this.stack[top--];
+    }
+
+    public String getTop () {
+        return stack[top];
     }
 }
