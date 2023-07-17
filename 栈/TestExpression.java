@@ -5,6 +5,10 @@ public class TestExpression {
     private final Expression expression = new Expression();
 
     @Test
+    public void testA() {
+        assertEquals("3", calculator.calculationPostfix("12+34*2/-6+"));
+    }
+    @Test
     public void testCalculationPostfix() {
         // 测试加法
         assertEquals("3", calculator.calculationPostfix("12+"));
@@ -37,14 +41,27 @@ public class TestExpression {
     }
 
     @Test
+    public void testB() {
+        assertEquals("12+34*5/-6+", expression.toPostfix("1+2-3*4/5+6"));
+    }
+
+    @Test
     public void testToPostfix() {
         // 测试只有一个数字的情况
         assertEquals("5", expression.toPostfix("5"));
         // 测试只有一个操作符的情况
         assertEquals("12+", expression.toPostfix("1+2"));
         // 测试加减乘除运算
-        assertEquals("23+4*", expression.toPostfix("2+3*4"));
-        assertEquals("23+4*5-", expression.toPostfix("2+3*4-5"));
+        assertEquals("234*+", expression.toPostfix("2+3*4"));
+        assertEquals("234*5-+", expression.toPostfix("2+3*4-5"));
+        assertEquals("234*5++", expression.toPostfix("2+3*4+5"));
+
+        assertEquals("23+45-*", expression.toPostfix("2-(3-4)*5"));
+
+        // 测试数字边界情况
+        assertEquals("1000000", expression.toPostfix("1000000"));
+        assertEquals("10", expression.toPostfix("10"));
+
         assertEquals("23+45+*", expression.toPostfix("(2+3)*(4+5)"));
         assertEquals("23*45/-", expression.toPostfix("2*3/(4-5)"));
         // 测试括号

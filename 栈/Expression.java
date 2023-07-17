@@ -22,9 +22,11 @@ public class Expression {
                     operatorStack.push(String.valueOf(infix.charAt(i)));
                 }
                 else { //依次弹出栈中高于或等于当前运算符的元素，否则就入栈
+                       // 考虑栈中有多个运算符都高于当前运算符，都要出栈
                     if (getOperatorPriority(operatorStack.getTop())
                             >= getOperatorPriority(String.valueOf(infix.charAt(i)))) {
                         postfix.append(operatorStack.pop());
+                        i--;
                     }
                     else if (infix.charAt(i) == '(') {
                         operatorStack.push(String.valueOf(infix.charAt(i)));
@@ -40,7 +42,9 @@ public class Expression {
                     }
                 }
             }
-            return null;
+        }
+        while (!operatorStack.isEmpty()) {
+            postfix.append(operatorStack.pop());
         }
         return postfix.toString();
     }
